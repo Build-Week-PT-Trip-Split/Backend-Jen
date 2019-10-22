@@ -16,7 +16,12 @@ router.post("/register", (req, res) => {
 
   Users.add(user)
     .then(saved => {
-      res.status(201).json(saved);
+      const token = generateToken(user);
+      res.status(201).json({
+        user,
+        message: `Welcome ${user.username}!, have a token`,
+        token
+      });
     })
     .catch(error => {
       res.status(500).json(error);
@@ -33,7 +38,7 @@ router.post("/login", (req, res) => {
         const token = generateToken(user);
         res.status(200).json({
           user,
-          message: `Welcome ${user.username}!, have a token`,
+          message: `Welcome back ${user.username}!, have a token`,
           token
         });
       } else {

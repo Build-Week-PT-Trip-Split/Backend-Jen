@@ -10,6 +10,8 @@ exports.up = function(knex, Promise) {
 
     tbl.string("email", 128).notNullable().unique();
 
+    tbl.string("friends").notNullable().defaultTo("[]");
+
     tbl.string("img", 128);
 
     tbl.timestamps(true, true);

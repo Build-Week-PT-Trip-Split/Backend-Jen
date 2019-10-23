@@ -1,8 +1,6 @@
 exports.seed = function(knex, Promise) {
   return knex("users")
-    .raw('SET foreign_key_checks = 0')
-    .truncate()
-    .raw('SET foreign_key_checks = 1')
+    .delete()
     .then(function() {
       return knex("users").insert([
         {

@@ -2,10 +2,18 @@ const router = require("express").Router();
 const Users = require("./usersModel");
 // const restricted = require('../auth/restricted-middleware');
 
+function prettyUser(user) {
+  var pretty = user;
+  if (pretty.friends) {
+    pretty.friends = JSON.parse(pretty.friends);
+  }
+  return pretty
+}
+
 // retrieve all users
 router.get("/", async (req, res) => {
   try {
-    const users = await Users.find();
+    const users = await Users.find().map(u => prettyUser(u));
     res.status(200).json(users);
   } catch (error) {
     res
@@ -22,7 +30,7 @@ router.get("/:id", async (req, res) => {
     const user = await Users.findById(req.params.id);
 
     if (user) {
-      res.status(200).json(user);
+      res.status(200).json(prettyUser(user));
     } else {
       res.status(404).json({ message: "User not found" });
     }
@@ -59,7 +67,7 @@ router.delete("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const user = await Users.add(req.body);
-    res.status(200).json(user);
+    res.status(200).json(prettyUser(user));
   } catch (error) {
     res.status(500).json({
       message: "Bummer. Error adding the user"
@@ -70,11 +78,16 @@ router.post("/", async (req, res) => {
 // update a user
 router.put("/:id", async (req, res) => {
   const id = req.params.id;
-  const changes = req.body;
+  var changes = req.body;
+
+  if (changes.friends) {
+    changes.friends = JSON.stringify(changes.friends);
+  }
+
   try {
     const user = await Users.update(id, changes);
     if (user) {
-      res.status(200).json(user);
+      res.status(200).json(prettyUser(user));
     } else {
       res.status(404).json({ message: "Uh-oh! User could not be found" });
     }

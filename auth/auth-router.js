@@ -10,6 +10,7 @@ const Users = require("../users/usersModel.js");
 
 // for endpoints beginning with /api/auth
 router.post("/register", (req, res) => {
+  console.log("Req.body: ", req.body)
   let user = req.body;
   const hash = bcrypt.hashSync(user.password, 10); // 2
   user.password = hash;
@@ -17,7 +18,7 @@ router.post("/register", (req, res) => {
   Users.add(user)
     .then(user => {
       const token = generateToken(user);
-      
+
       res.status(201).json({
         user,
         message: `Welcome ${user.username}!, have a token`,
@@ -25,6 +26,7 @@ router.post("/register", (req, res) => {
       });
     })
     .catch(error => {
+      console.log("Register error: ", error)
       res.status(500).json(error);
     });
 });

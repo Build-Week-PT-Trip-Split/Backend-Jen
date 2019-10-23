@@ -1,6 +1,8 @@
 exports.seed = function(knex, Promise) {
   return knex("users")
+    .raw('SET foreign_key_checks = 0')
     .truncate()
+    .raw('SET foreign_key_checks = 1')
     .then(function() {
       return knex("users").insert([
         {
@@ -8,120 +10,90 @@ exports.seed = function(knex, Promise) {
           username: "mario1",
           password: "pass",
           email: "test@gmail.com",
-          id: 0,
-          friends: [1, 2, 3]
         },
         {
           name: "Luigi",
           username: "luigi1",
           password: "pass",
-          email: "test@gmail.com",
-          id: 1,
-          friends: []
+          email: "test@gmail.com"
         },
         {
           name: "Bowser",
           username: "badguy",
           password: "pass",
-          email: "test@gmail.com",
-          id: 2,
-          friends: []
+          email: "test@gmail.com"
         },
         {
           name: "Peach",
           username: "princess",
           password: "pass",
-          email: "test@gmail.com",
-          id: 3,
-          friends: []
+          email: "test@gmail.com"
         },
         {
           name: "Joe",
           username: "traveler",
           password: "pass",
-          email: "test@gmail.com",
-          id: 4,
-          friends: []
+          email: "test@gmail.com"
         },
         {
           name: "Matt",
           username: "traveler",
           password: "pass",
-          email: "test@gmail.com",
-          id: 5,
-          friends: []
+          email: "test@gmail.com"
         },
         {
           name: "David",
           username: "traveler",
           password: "pass",
-          email: "test@gmail.com",
-          id: 6,
-          friends: []
+          email: "test@gmail.com"
         },
         {
           name: "Jon",
           username: "traveler",
           password: "pass",
-          email: "test@gmail.com",
-          id: 7,
-          friends: []
+          email: "test@gmail.com"
         },
         {
           name: "Ryan",
           username: "traveler",
           password: "pass",
-          email: "test@gmail.com",
-          id: 8,
-          friends: []
+          email: "test@gmail.com"
         },
         {
           name: "Jen",
           username: "traveler",
           password: "pass",
-          email: "test@gmail.com",
-          id: 9,
-          friends: []
+          email: "test@gmail.com"
         },
         {
           name: "Jack",
           username: "traveler",
           password: "pass",
-          email: "test@gmail.com",
-          id: 10,
-          friends: []
+          email: "test@gmail.com"
         },
         {
           name: "Jill",
           username: "traveler",
           password: "pass",
-          email: "test@gmail.com",
-          id: 11,
-          friends: []
+          email: "test@gmail.com"
         },
         {
           name: "Mike",
           username: "traveler",
           password: "pass",
-          email: "test@gmail.com",
-          id: 12,
-          friends: []
+          email: "test@gmail.com"
         },
         {
           name: "Katie",
           username: "traveler",
           password: "pass",
-          email: "test@gmail.com",
-          id: 13,
-          friends: []
+          email: "test@gmail.com"
         },
         {
           name: "Bill",
           username: "traveler",
           password: "pass",
-          email: "test@gmail.com",
-          id: 14,
-          friends: []
+          email: "test@gmail.com"
         }
 
 

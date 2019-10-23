@@ -15,8 +15,9 @@ router.post("/register", (req, res) => {
   user.password = hash;
 
   Users.add(user)
-    .then(saved => {
+    .then(user => {
       const token = generateToken(user);
+      
       res.status(201).json({
         user,
         message: `Welcome ${user.username}!, have a token`,

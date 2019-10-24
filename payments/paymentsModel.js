@@ -21,8 +21,8 @@ function findBy(filter) {
   return db("payments").where(filter);
 }
 
-async function add(expense) {
-  const [id] = await db("payments").insert(expense).returning('id');
+async function add(payment) {
+  const [id] = await db("payments").insert(payment).returning('id');
 
   return findById(id);
 }

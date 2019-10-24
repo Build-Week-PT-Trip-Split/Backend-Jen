@@ -7,11 +7,11 @@ router.get('/', async (req, res) => {
     const payments = await Payments.find();
     res.status(200).json(payments);
   } catch (error) {
-    res.status(500).json({ error: 'Uh-oh! There was an error retrieving your payments'})
+    res.status(500).json({ message: error + 'Uh-oh! There was an error retrieving your payments'})
   }
 });
 
-// add new expense
+// add new payment
 router.post('/', async (req, res) => {
   try {
     const payment = await Payments.add(req.body);

@@ -15,7 +15,8 @@ function find() {
     "primary_paid",
     "trip_id",
     "created_at",
-    "updated_at"
+    "updated_at",
+    "settled"
   );
 }
 

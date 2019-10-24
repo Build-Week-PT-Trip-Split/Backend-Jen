@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
   } catch (error) {
     console.log(error)
     res.status(500).json({
-      message: 'Bummer. Error adding the expense',
+      message: error + 'Bummer. Error adding the expense',
     });
   }
 })

@@ -19,7 +19,7 @@ exports.up = function(knex, Promise) {
     .onDelete("CASCADE")
     .onUpdate("CASCADE");
 
-    tbl.boolean("settled");
+    tbl.boolean("settled").notNullable().defaultTo(0);
 
     tbl.timestamps(true, true);
   });
